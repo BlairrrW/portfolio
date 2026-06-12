@@ -1,9 +1,533 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Blair Wang</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blair Wang — Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563EB;
+      --blue-light: #EFF6FF;
+      --text: #111111;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --bg: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* SECTIONS */
+    section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 10rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .hero-title .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--blue);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .hero-cta:hover { opacity: 0.88; }
+
+    .hero-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-left: 0.75rem;
+      transition: border-color 0.15s;
+    }
+
+    .hero-cta-ghost:hover { border-color: var(--text); }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 3rem;
+      max-width: 480px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+
+    .skill-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .skill-tag + .skill-tag::before {
+      content: '·';
+      margin-right: 6px;
+      color: var(--border);
+    }
+
+    /* PROJECTS */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color 0.15s;
+    }
+
+    .project-card:hover { border-color: #9CA3AF; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .project-link {
+      font-size: 13px;
+      color: var(--blue);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .project-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.15s;
+    }
+
+    .contact-item:hover { border-color: #9CA3AF; }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-label { font-size: 11px; color: var(--muted); }
+    .contact-value { font-weight: 500; }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I'm Blair</h1>
+
+<nav>
+  <a class="nav-logo" href="#hero">Blair Wang</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-label">Data Analyst · Business Intelligence</p>
+  <h1 class="hero-title">
+    Hi, I'm Blair<span class="cursor"></span>
+  </h1>
+  <p class="hero-sub">
+    Data Analyst at Titansoft, working on gaming platform analytics, risk control systems, and self-service BI tooling. I turn raw data into decisions.
+  </p>
+  <a class="hero-cta" href="#projects">View my work</a>
+  <a class="hero-cta-ghost" href="#contact">Get in touch</a>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Skills</p>
+  <h2 class="section-title">What I work with</h2>
+  <p class="section-desc">Three years of hands-on experience across analytics, data engineering, and product intelligence.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <p class="skill-card-label">Data & Query</p>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">BigQuery</span>
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">T-SQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Visualization</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Dashboard Design</span>
+        <span class="skill-tag">KPI Reporting</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Analytics</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">Z-Score</span>
+        <span class="skill-tag">Time Series</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Product & BI</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Requirements</span>
+        <span class="skill-tag">Self-service BI</span>
+        <span class="skill-tag">Stakeholder Comms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Projects</p>
+  <h2 class="section-title">Selected work</h2>
+  <p class="section-desc">A sample of projects from product analytics, risk intelligence, and data infrastructure.</p>
+
+  <div class="projects-list">
+
+    <div class="project-card">
+      <div class="project-header">
+        <p class="project-title">Real-Time Risk Control Engine</p>
+      </div>
+      <p class="project-desc">
+        Designed a two-tier anomaly detection system for a gaming platform. Defense Line A uses Z-Score analysis at the game level; Defense Line B monitors player-level bet behavior. Produces P0/P1/P2 alerts with automated Stop Withdraw actions.
+      </p>
+      <div class="project-chips">
+        <span class="chip">BigQuery</span>
+        <span class="chip">Python</span>
+        <span class="chip">Z-Score</span>
+        <span class="chip">Risk Control</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <p class="project-title">InJoi Data Analytics Assistant</p>
+      </div>
+      <p class="project-desc">
+        Built a self-service analytics assistant for Product Owners and Product Analysts using Claude with MCP integration to SQL Server. Documented domain logic including bitmask classification, currency mapping, and RTP formulas to enable natural language querying.
+      </p>
+      <div class="project-chips">
+        <span class="chip">Claude AI</span>
+        <span class="chip">SQL Server</span>
+        <span class="chip">MCP</span>
+        <span class="chip">Self-service BI</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <p class="project-title">DailySummary BigQuery Data Pipeline</p>
+      </div>
+      <p class="project-desc">
+        Designed and shipped an hourly-refreshed aggregation table in BigQuery sourced from the core betting event log. Used as the backbone for games performance dashboards across the platform.
+      </p>
+      <div class="project-chips">
+        <span class="chip">BigQuery</span>
+        <span class="chip">Data Engineering</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Dashboard</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <p class="project-title">Win/Loss Monitoring Dashboard</p>
+      </div>
+      <p class="project-desc">
+        Built a Tableau risk control dashboard covering company and player-level win/loss monitoring. Includes threshold-based alerting logic for SGD 10k company losses and SGD 5k single-player losses, with currency normalization across multiple regions.
+      </p>
+      <div class="project-chips">
+        <span class="chip">Tableau</span>
+        <span class="chip">SQL Server</span>
+        <span class="chip">Risk Monitoring</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title">Let's connect</h2>
+  <p class="section-desc">Open to conversations about data, analytics, and building better products.</p>
+
+  <div class="contact-grid">
+    <a class="contact-item" href="mailto:your@email.com">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </div>
+      <div>
+        <p class="contact-label">Email</p>
+        <p class="contact-value">your@email.com</p>
+      </div>
+    </a>
+    <a class="contact-item" href="https://github.com/BlairrrW" target="_blank" rel="noopener">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </div>
+      <div>
+        <p class="contact-label">GitHub</p>
+        <p class="contact-value">BlairrrW</p>
+      </div>
+    </a>
+    <a class="contact-item" href="https://linkedin.com/in/" target="_blank" rel="noopener">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div>
+        <p class="contact-label">LinkedIn</p>
+        <p class="contact-value">Blair Wang</p>
+      </div>
+    </a>
+    <a class="contact-item" href="https://github.com/BlairrrW" target="_blank" rel="noopener">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <div>
+        <p class="contact-label">Portfolio</p>
+        <p class="contact-value">blairrrw.github.io</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Built with HTML &amp; GitHub Pages · Blair Wang © 2026
+</footer>
+
 </body>
 </html>
