@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blair Wang — Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue: #2563EB;
-      --blue-light: #EFF6FF;
+      --bg: #ffffff;
+      --bg2: #f8f9fa;
       --text: #111111;
       --muted: #6B7280;
       --border: #E5E7EB;
-      --bg: #FFFFFF;
+      --blue: #2563EB;
+      --blue-light: #EFF6FF;
+      --blue-mid: #BFDBFE;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(255,255,255,0.92);
+      --hero-dot: rgba(37,99,235,0.07);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1117;
+      --bg2: #1a1d27;
+      --text: #F3F4F6;
+      --muted: #9CA3AF;
+      --border: #2a2d3a;
+      --blue: #60A5FA;
+      --blue-light: #1e2a3a;
+      --blue-mid: #1e3a5f;
+      --card-bg: #1a1d27;
+      --nav-bg: rgba(15,17,23,0.92);
+      --hero-dot: rgba(96,165,250,0.06);
     }
 
     html { scroll-behavior: smooth; }
@@ -28,6 +47,7 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
     }
 
     /* NAV */
@@ -35,22 +55,30 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
       height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
     }
 
     .nav-logo {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       color: var(--text);
       text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
     .nav-links {
@@ -68,100 +96,205 @@
 
     .nav-links a:hover { color: var(--text); }
 
-    /* SECTIONS */
-    section {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
+    /* DARK TOGGLE */
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+      color: var(--muted);
     }
 
-    section + section {
-      border-top: 1px solid var(--border);
-    }
+    .theme-toggle:hover { background: var(--bg2); color: var(--text); }
+
+    .icon-sun, .icon-moon { width: 16px; height: 16px; }
+    [data-theme="light"] .icon-moon { display: none; }
+    [data-theme="dark"] .icon-sun { display: none; }
 
     /* HERO */
     #hero {
-      padding-top: 10rem;
-      padding-bottom: 6rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 2rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--hero-dot) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .hero-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.10) 0%, transparent 70%);
+      top: -100px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .hero-blob {
+      background: radial-gradient(circle, rgba(96,165,250,0.08) 0%, transparent 70%);
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      padding-top: 4rem;
     }
 
     .hero-label {
       font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.1s forwards;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
+      font-size: clamp(2.8rem, 7vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
       margin-bottom: 1.5rem;
       color: var(--text);
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.2s forwards;
     }
 
-    .hero-title .cursor {
+    .hero-title .highlight {
+      position: relative;
+      display: inline-block;
+      color: var(--blue);
+    }
+
+    .cursor {
       display: inline-block;
       width: 3px;
-      height: 0.85em;
+      height: 0.8em;
       background: var(--blue);
-      margin-left: 4px;
+      margin-left: 2px;
       vertical-align: middle;
       animation: blink 1s step-end infinite;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
     .hero-sub {
-      font-size: 1.125rem;
+      font-size: 1.1rem;
       color: var(--muted);
-      max-width: 480px;
+      max-width: 500px;
       margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.35s forwards;
     }
 
-    .hero-cta {
+    .hero-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.45s forwards;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 4rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease 0.6s forwards;
+    }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* BUTTONS */
+    .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: var(--blue);
       color: #fff;
       font-size: 14px;
-      font-weight: 500;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: opacity 0.15s, transform 0.15s;
     }
 
-    .hero-cta:hover { opacity: 0.88; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    .hero-cta-ghost {
+    .btn-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       border: 1px solid var(--border);
       color: var(--text);
       font-size: 14px;
       font-weight: 500;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
       text-decoration: none;
-      margin-left: 0.75rem;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, transform 0.15s, background 0.15s;
     }
 
-    .hero-cta-ghost:hover { border-color: var(--text); }
+    .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); background: var(--bg2); }
 
-    /* SECTION LABEL */
+    /* SECTIONS */
+    .section-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
     .section-label {
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--blue);
@@ -169,11 +302,10 @@
     }
 
     .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      color: var(--text);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
     }
 
     .section-desc {
@@ -185,63 +317,78 @@
     /* SKILLS */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 12px;
     }
 
     .skill-card {
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      padding: 1.1rem;
+      background: var(--card-bg);
+      transition: border-color 0.2s, transform 0.2s;
     }
+
+    .skill-card:hover { border-color: var(--blue); transform: translateY(-2px); }
 
     .skill-card-label {
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 0.5rem;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      margin-bottom: 0.6rem;
     }
 
     .skill-tag {
       font-size: 13px;
       color: var(--muted);
-    }
-
-    .skill-tag + .skill-tag::before {
-      content: '·';
-      margin-right: 6px;
-      color: var(--border);
+      display: block;
+      line-height: 1.8;
     }
 
     /* PROJECTS */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+    .projects-list { display: flex; flex-direction: column; gap: 1.25rem; }
 
     .project-card {
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1.5rem;
-      transition: border-color 0.15s;
+      background: var(--card-bg);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    .project-card:hover { border-color: #9CA3AF; }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--blue);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--blue-mid);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(37,99,235,0.08);
+    }
+
+    [data-theme="dark"] .project-card:hover {
+      box-shadow: 0 8px 32px rgba(96,165,250,0.08);
+    }
+
+    .project-card:hover::before { opacity: 1; }
 
     .project-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .project-title {
@@ -250,20 +397,21 @@
       color: var(--text);
     }
 
-    .project-link {
-      font-size: 13px;
+    .project-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: var(--blue-light);
       color: var(--blue);
-      text-decoration: none;
       white-space: nowrap;
     }
-
-    .project-link:hover { text-decoration: underline; }
 
     .project-desc {
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 1rem;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .project-chips {
@@ -276,8 +424,14 @@
       font-size: 12px;
       font-weight: 500;
       padding: 3px 10px;
-      border-radius: 99px;
-      background: var(--blue-light);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .project-card:hover .chip {
+      border-color: var(--blue-mid);
       color: var(--blue);
     }
 
@@ -288,30 +442,26 @@
       gap: 12px;
     }
 
-    @media (max-width: 480px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.9rem;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.9rem 1.1rem;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
       text-decoration: none;
       color: var(--text);
       font-size: 14px;
-      transition: border-color 0.15s;
+      background: var(--card-bg);
+      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .contact-item:hover { border-color: #9CA3AF; }
+    .contact-item:hover { border-color: var(--blue); transform: translateY(-2px); }
 
     .contact-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
       background: var(--blue-light);
       display: flex;
       align-items: center;
@@ -320,17 +470,27 @@
     }
 
     .contact-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--blue);
-      fill: none;
+      width: 16px; height: 16px;
+      stroke: var(--blue); fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .contact-label { font-size: 11px; color: var(--muted); }
-    .contact-value { font-weight: 500; }
+    .contact-value { font-weight: 600; font-size: 14px; }
+
+    /* SCROLL FADE */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     footer {
       text-align: center;
@@ -339,95 +499,135 @@
       color: var(--muted);
       border-top: 1px solid var(--border);
     }
+
+    @media (max-width: 560px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
 
 <nav>
   <a class="nav-logo" href="#hero">Blair Wang</a>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <p class="hero-label">Data Analyst · Business Intelligence</p>
-  <h1 class="hero-title">
-    Hi, I'm Blair<span class="cursor"></span>
-  </h1>
-  <p class="hero-sub">
-    Data Analyst at Titansoft, working on gaming platform analytics, risk control systems, and self-service BI tooling. I turn raw data into decisions.
-  </p>
-  <a class="hero-cta" href="#projects">View my work</a>
-  <a class="hero-cta-ghost" href="#contact">Get in touch</a>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label">Skills</p>
-  <h2 class="section-title">What I work with</h2>
-  <p class="section-desc">Three years of hands-on experience across analytics, data engineering, and product intelligence.</p>
-
-  <div class="skills-grid">
-    <div class="skill-card">
-      <p class="skill-card-label">Data & Query</p>
-      <div class="skill-tags">
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">BigQuery</span>
-        <span class="skill-tag">SQL Server</span>
-        <span class="skill-tag">T-SQL</span>
-      </div>
+  <div class="hero-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <p class="hero-label">Data Analyst · Business Intelligence</p>
+    <h1 class="hero-title">
+      Hi, I'm <span class="highlight" id="typed-name"></span><span class="cursor"></span>
+    </h1>
+    <p class="hero-sub">
+      Data Analyst at Titansoft, building gaming platform analytics, risk control systems, and self-service BI tooling. I turn raw data into decisions.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View my work →</a>
+      <a class="btn-ghost" href="#contact">Get in touch</a>
     </div>
-    <div class="skill-card">
-      <p class="skill-card-label">Visualization</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Dashboard Design</span>
-        <span class="skill-tag">KPI Reporting</span>
+    <div class="hero-stats">
+      <div>
+        <p class="stat-num">3+</p>
+        <p class="stat-label">Years in analytics</p>
       </div>
-    </div>
-    <div class="skill-card">
-      <p class="skill-card-label">Analytics</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Pandas</span>
-        <span class="skill-tag">Z-Score</span>
-        <span class="skill-tag">Time Series</span>
+      <div class="stat-divider"></div>
+      <div>
+        <p class="stat-num">4</p>
+        <p class="stat-label">Core projects</p>
       </div>
-    </div>
-    <div class="skill-card">
-      <p class="skill-card-label">Product & BI</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Requirements</span>
-        <span class="skill-tag">Self-service BI</span>
-        <span class="skill-tag">Stakeholder Comms</span>
+      <div class="stat-divider"></div>
+      <div>
+        <p class="stat-num">SQL · BI · AI</p>
+        <p class="stat-label">Primary stack</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
+<div class="section-wrap fade-in" id="skills">
+  <p class="section-label">Skills</p>
+  <h2 class="section-title">What I work with</h2>
+  <p class="section-desc">Hands-on experience across analytics, data engineering, and product intelligence.</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <p class="skill-card-label">Data & Query</p>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">BigQuery</span>
+      <span class="skill-tag">SQL Server</span>
+      <span class="skill-tag">T-SQL</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Visualization</p>
+      <span class="skill-tag">Tableau</span>
+      <span class="skill-tag">Dashboard Design</span>
+      <span class="skill-tag">KPI Reporting</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Analytics</p>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">Z-Score</span>
+      <span class="skill-tag">Time Series</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Product & BI</p>
+      <span class="skill-tag">Requirements</span>
+      <span class="skill-tag">Self-service BI</span>
+      <span class="skill-tag">Stakeholder Comms</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Infrastructure</p>
+      <span class="skill-tag">BigQuery</span>
+      <span class="skill-tag">SQL Server Agent</span>
+      <span class="skill-tag">MCP / API</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">AI & Tooling</p>
+      <span class="skill-tag">Claude AI</span>
+      <span class="skill-tag">Prompt Engineering</span>
+      <span class="skill-tag">LLM Integration</span>
+    </div>
+  </div>
+</div>
+
 <!-- PROJECTS -->
-<section id="projects">
+<div class="section-wrap fade-in" id="projects">
   <p class="section-label">Projects</p>
   <h2 class="section-title">Selected work</h2>
-  <p class="section-desc">A sample of projects from product analytics, risk intelligence, and data infrastructure.</p>
+  <p class="section-desc">Analytics, risk intelligence, and data infrastructure built at scale.</p>
 
   <div class="projects-list">
-
     <div class="project-card">
       <div class="project-header">
         <p class="project-title">Real-Time Risk Control Engine</p>
+        <span class="project-badge">Risk · ML</span>
       </div>
-      <p class="project-desc">
-        Designed a two-tier anomaly detection system for a gaming platform. Defense Line A uses Z-Score analysis at the game level; Defense Line B monitors player-level bet behavior. Produces P0/P1/P2 alerts with automated Stop Withdraw actions.
-      </p>
+      <p class="project-desc">Two-tier anomaly detection for a live gaming platform. Defense Line A uses Z-Score analysis at the game level; Defense Line B monitors player-level bet behavior patterns. Produces P0/P1/P2 alerts with automated Stop Withdraw actions to protect the platform.</p>
       <div class="project-chips">
         <span class="chip">BigQuery</span>
         <span class="chip">Python</span>
         <span class="chip">Z-Score</span>
+        <span class="chip">Anomaly Detection</span>
         <span class="chip">Risk Control</span>
       </div>
     </div>
@@ -435,28 +635,26 @@
     <div class="project-card">
       <div class="project-header">
         <p class="project-title">InJoi Data Analytics Assistant</p>
+        <span class="project-badge">AI · Self-service BI</span>
       </div>
-      <p class="project-desc">
-        Built a self-service analytics assistant for Product Owners and Product Analysts using Claude with MCP integration to SQL Server. Documented domain logic including bitmask classification, currency mapping, and RTP formulas to enable natural language querying.
-      </p>
+      <p class="project-desc">Built a natural language analytics assistant for Product Owners and Analysts using Claude with MCP integration to SQL Server. Documented domain logic — bitmask classification, currency mapping, RTP formulas — enabling non-technical stakeholders to query data independently.</p>
       <div class="project-chips">
         <span class="chip">Claude AI</span>
         <span class="chip">SQL Server</span>
         <span class="chip">MCP</span>
-        <span class="chip">Self-service BI</span>
+        <span class="chip">Prompt Engineering</span>
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-header">
         <p class="project-title">DailySummary BigQuery Data Pipeline</p>
+        <span class="project-badge">Data Engineering</span>
       </div>
-      <p class="project-desc">
-        Designed and shipped an hourly-refreshed aggregation table in BigQuery sourced from the core betting event log. Used as the backbone for games performance dashboards across the platform.
-      </p>
+      <p class="project-desc">Designed and shipped an hourly-refreshed aggregation table in BigQuery sourced from the core betting event log. Serves as the performance data backbone for games dashboards across the platform, reducing query costs and latency for downstream consumers.</p>
       <div class="project-chips">
         <span class="chip">BigQuery</span>
-        <span class="chip">Data Engineering</span>
+        <span class="chip">Data Pipeline</span>
         <span class="chip">SQL</span>
         <span class="chip">Dashboard</span>
       </div>
@@ -465,22 +663,21 @@
     <div class="project-card">
       <div class="project-header">
         <p class="project-title">Win/Loss Monitoring Dashboard</p>
+        <span class="project-badge">Tableau · Risk</span>
       </div>
-      <p class="project-desc">
-        Built a Tableau risk control dashboard covering company and player-level win/loss monitoring. Includes threshold-based alerting logic for SGD 10k company losses and SGD 5k single-player losses, with currency normalization across multiple regions.
-      </p>
+      <p class="project-desc">Tableau risk control dashboard for company and player-level win/loss monitoring. Includes threshold alerting for SGD 10k company losses and SGD 5k single-player losses per week, with currency normalization across Southeast Asian markets.</p>
       <div class="project-chips">
         <span class="chip">Tableau</span>
         <span class="chip">SQL Server</span>
         <span class="chip">Risk Monitoring</span>
+        <span class="chip">Multi-currency</span>
       </div>
     </div>
-
   </div>
-</section>
+</div>
 
 <!-- CONTACT -->
-<section id="contact">
+<div class="section-wrap fade-in" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Let's connect</h2>
   <p class="section-desc">Open to conversations about data, analytics, and building better products.</p>
@@ -513,7 +710,7 @@
         <p class="contact-value">Blair Wang</p>
       </div>
     </a>
-    <a class="contact-item" href="https://github.com/BlairrrW" target="_blank" rel="noopener">
+    <a class="contact-item" href="https://blairrrw.github.io/portfolio/" target="_blank" rel="noopener">
       <div class="contact-icon">
         <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
@@ -523,11 +720,49 @@
       </div>
     </a>
   </div>
-</section>
+</div>
 
 <footer>
   Built with HTML &amp; GitHub Pages · Blair Wang © 2026
 </footer>
 
+<script>
+  // Dark mode toggle
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) html.setAttribute('data-theme', saved);
+
+  toggle.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // Typewriter for hero name
+  const target = document.getElementById('typed-name');
+  const text = 'Blair';
+  let i = 0;
+  function type() {
+    if (i <= text.length) {
+      target.textContent = text.slice(0, i);
+      i++;
+      setTimeout(type, i === 1 ? 400 : 90);
+    }
+  }
+  setTimeout(type, 800);
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
