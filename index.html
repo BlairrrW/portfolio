@@ -9,500 +9,74 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #ffffff;
-      --bg2: #f8f9fa;
-      --text: #111111;
-      --muted: #6B7280;
-      --border: #E5E7EB;
-      --blue: #2563EB;
-      --blue-light: #EFF6FF;
-      --blue-mid: #BFDBFE;
-      --card-bg: #ffffff;
-      --nav-bg: rgba(255,255,255,0.92);
+      --bg: #ffffff; --bg2: #f8f9fa; --text: #111111; --muted: #6B7280;
+      --border: #E5E7EB; --blue: #2563EB; --blue-light: #EFF6FF;
+      --blue-mid: #BFDBFE; --card-bg: #ffffff; --nav-bg: rgba(255,255,255,0.92);
       --hero-dot: rgba(37,99,235,0.07);
     }
-
     [data-theme="dark"] {
-      --bg: #0f1117;
-      --bg2: #1a1d27;
-      --text: #F3F4F6;
-      --muted: #9CA3AF;
-      --border: #2a2d3a;
-      --blue: #60A5FA;
-      --blue-light: #1e2a3a;
-      --blue-mid: #1e3a5f;
-      --card-bg: #1a1d27;
-      --nav-bg: rgba(15,17,23,0.92);
+      --bg: #0f1117; --bg2: #1a1d27; --text: #F3F4F6; --muted: #9CA3AF;
+      --border: #2a2d3a; --blue: #60A5FA; --blue-light: #1e2a3a;
+      --blue-mid: #1e3a5f; --card-bg: #1a1d27; --nav-bg: rgba(15,17,23,0.92);
       --hero-dot: rgba(96,165,250,0.06);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      transition: background 0.3s, color 0.3s;
-    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
 
     /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.3s, border-color 0.3s;
-    }
-
-    .nav-logo {
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    /* DARK TOGGLE */
-    .theme-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.15s, background 0.15s;
-      color: var(--muted);
-    }
-
-    .theme-toggle:hover { background: var(--bg2); color: var(--text); }
-
-    .icon-sun, .icon-moon { width: 16px; height: 16px; }
-    [data-theme="light"] .icon-moon { display: none; }
-    [data-theme="dark"] .icon-sun { display: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; }
+    .theme-toggle { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--muted); }
 
     /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 0 2rem;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(var(--hero-dot) 1.5px, transparent 1.5px);
-      background-size: 28px 28px;
-      pointer-events: none;
-    }
-
-    .hero-blob {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,99,235,0.10) 0%, transparent 70%);
-      top: -100px;
-      right: -150px;
-      pointer-events: none;
-    }
-
-    [data-theme="dark"] .hero-blob {
-      background: radial-gradient(circle, rgba(96,165,250,0.08) 0%, transparent 70%);
-    }
-
-    .hero-inner {
-      max-width: 720px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-      padding-top: 4rem;
-    }
-
-    .hero-label {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.1s forwards;
-    }
-
-    .hero-title {
-      font-size: clamp(2.8rem, 7vw, 4.2rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.2s forwards;
-    }
-
-    .hero-title .highlight {
-      position: relative;
-      display: inline-block;
-      color: var(--blue);
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 3px;
-      height: 0.8em;
-      background: var(--blue);
-      margin-left: 2px;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 500px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.35s forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.45s forwards;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 4rem;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.6s forwards;
-    }
-
-    .stat-num {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .stat-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* BUTTONS */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--blue);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.15s, transform 0.15s;
-    }
-
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: border-color 0.15s, transform 0.15s, background 0.15s;
-    }
-
-    .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); background: var(--bg2); }
+    #hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 0 2rem; }
+    .hero-bg { position: absolute; inset: 0; background-image: radial-gradient(var(--hero-dot) 1.5px, transparent 1.5px); background-size: 28px 28px; pointer-events: none; }
+    .hero-inner { max-width: 720px; margin: 0 auto; width: 100%; z-index: 1; }
+    .hero-label { font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; }
+    .hero-title { font-size: clamp(2.8rem, 7vw, 4.2rem); font-weight: 700; margin-bottom: 1.5rem; }
+    .highlight { color: var(--blue); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 4rem; }
+    .stat-num { font-size: 1.8rem; font-weight: 700; }
+    .stat-label { font-size: 13px; color: var(--muted); }
+    .stat-divider { width: 1px; background: var(--border); }
 
     /* SECTIONS */
-    .section-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-desc {
-      color: var(--muted);
-      margin-bottom: 3rem;
-      max-width: 480px;
-    }
+    .section-wrap { max-width: 720px; margin: 0 auto; padding: 6rem 2rem; border-top: 1px solid var(--border); }
+    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+    .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; }
 
     /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-    }
-
-    .skill-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.1rem;
-      background: var(--card-bg);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .skill-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-
-    .skill-card-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.6rem;
-    }
-
-    .skill-tag {
-      font-size: 13px;
-      color: var(--muted);
-      display: block;
-      line-height: 1.8;
-    }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skill-card { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: var(--card-bg); min-height: 140px; }
+    .skill-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+    .skill-tag { font-size: 13px; color: var(--muted); display: block; }
 
     /* PROJECTS */
     .projects-list { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      background: var(--card-bg);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--blue);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .project-card:hover {
-      border-color: var(--blue-mid);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(37,99,235,0.08);
-    }
-
-    [data-theme="dark"] .project-card:hover {
-      box-shadow: 0 8px 32px rgba(96,165,250,0.08);
-    }
-
-    .project-card:hover::before { opacity: 1; }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .project-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 99px;
-      background: var(--blue-light);
-      color: var(--blue);
-      white-space: nowrap;
-    }
-
-    .project-desc {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.65;
-    }
-
-    .project-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .project-card:hover .chip {
-      border-color: var(--blue-mid);
-      color: var(--blue);
-    }
+    .project-card { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: var(--card-bg); }
+    .project-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .project-title { font-size: 1rem; font-weight: 600; }
+    .project-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--blue-light); color: var(--blue); }
+    .project-desc { font-size: 14px; color: var(--muted); margin-bottom: 1rem; }
+    .project-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip { font-size: 12px; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); }
 
     /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
-      background: var(--card-bg);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .contact-item:hover { border-color: var(--blue); transform: translateY(-2px); }
-
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--blue-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contact-icon svg {
-      width: 16px; height: 16px;
-      stroke: var(--blue); fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .contact-item { border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 1rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; align-items: center; gap: 0.9rem; background: var(--card-bg); }
+    .contact-icon { width: 40px; height: 40px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+    .contact-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; }
     .contact-label { font-size: 11px; color: var(--muted); }
-    .contact-value { font-weight: 600; font-size: 14px; }
+    .contact-value { font-weight: 600; font-size: 13px; }
 
-    /* SCROLL FADE */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    footer { text-align: center; padding: 3rem 2rem; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      font-size: 13px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 560px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.5rem; }
+    @media (max-width: 768px) {
+      .contact-grid, .skills-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
   </style>
@@ -517,236 +91,101 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-    </button>
+    <button class="theme-toggle" id="themeToggle">🌙/☀️</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-blob"></div>
   <div class="hero-inner">
     <p class="hero-label">Risk Control · Anomaly Detection · Business Intelligence</p>
-    <h1 class="hero-title">
-      Hi, I'm <span class="highlight" id="typed-name"></span><span class="cursor"></span>
-    </h1>
-    <p class="hero-sub">
-      Data Analyst specializing in risk control and BI systems for high-frequency platforms. Currently extending that anomaly detection approach to Web3 — on-chain data, DeFi risk, and wallet behavior analytics.
-    </p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#projects">View my work →</a>
-      <a class="btn-ghost" href="#contact">Get in touch</a>
-    </div>
+    <h1 class="hero-title">Hi, I'm <span class="highlight">Blair</span></h1>
+    <p>Data Analyst specializing in risk control and BI systems for high-frequency platforms. Currently extending that anomaly detection approach to Web3.</p>
     <div class="hero-stats">
-      <div>
-        <p class="stat-num">3+ yrs</p>
-        <p class="stat-label">High-Frequency Platform Risk Analytics</p>
-      </div>
+      <div><p class="stat-num">3+ yrs</p><p class="stat-label">HFT Platform</p></div>
       <div class="stat-divider"></div>
-      <div>
-        <p class="stat-num">7+ yrs</p>
-        <p class="stat-label">Finance, Banking & AML</p>
-      </div>
-      <div class="stat-divider"></div>
-      <div>
-        <p class="stat-num">ACAMS</p>
-        <p class="stat-label">Certified</p>
-      </div>
+      <div><p class="stat-num">7+ yrs</p><p class="stat-label">Finance & AML</p></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<div class="section-wrap fade-in" id="skills">
+<div class="section-wrap" id="skills">
   <p class="section-label">Skills</p>
   <h2 class="section-title">What I work with</h2>
-  <p class="section-desc">Hands-on experience across analytics, data engineering, and product intelligence.</p>
   <div class="skills-grid">
     <div class="skill-card">
       <p class="skill-card-label">Data & Query</p>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">BigQuery</span>
-      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SQL, BigQuery, Python</span>
     </div>
     <div class="skill-card">
       <p class="skill-card-label">Visualization</p>
-      <span class="skill-tag">Tableau</span>
-      <span class="skill-tag">Dashboard Design</span>
-      <span class="skill-tag">KPI Reporting</span>
+      <span class="skill-tag">Tableau, Dashboarding</span>
     </div>
     <div class="skill-card">
-      <p class="skill-card-label">Domain Background</p>
-      <span class="skill-tag">Banking & AML</span>
-      <span class="skill-tag">High-Frequency Trading Platforms</span>
+      <p class="skill-card-label">Domain</p>
+      <span class="skill-tag">Banking, AML, HFT</span>
     </div>
     <div class="skill-card">
       <p class="skill-card-label">Education</p>
-      <span class="skill-tag">Master of Applied Mathematics, NCHU</span>
-      <span class="skill-tag">Bachelor of Statistics, TKU</span>
+      <span class="skill-tag">Master of Applied Mathematics</span>
     </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
-<div class="section-wrap fade-in" id="projects">
+<div class="section-wrap" id="projects">
   <p class="section-label">Projects</p>
   <h2 class="section-title">Selected work</h2>
-  <p class="section-desc">Analytics, risk intelligence, and data infrastructure built at scale.</p>
-
   <div class="projects-list">
     <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">Real-Time Risk Control Engine</p>
-        <span class="project-badge">Risk · ML</span>
-      </div>
-      <p class="project-desc">Two-tier anomaly detection for a live gaming platform. Defense Line A uses Z-Score analysis at the game level; Defense Line B monitors player-level bet behavior patterns. Produces P0/P1/P2 alerts with automated Stop Withdraw actions to protect the platform.</p>
-      <div class="project-chips">
-        <span class="chip">BigQuery</span>
-        <span class="chip">Python</span>
-        <span class="chip">Z-Score</span>
-        <span class="chip">Anomaly Detection</span>
-        <span class="chip">Risk Control</span>
-      </div>
+      <div class="project-header"><p class="project-title">Web3 On-chain Pattern Analysis</p><span class="project-badge">Web3</span></div>
+      <p class="project-desc">Project in progress: Identifying wallet behavioral clusters on EVM chains.</p>
     </div>
-
     <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">InJoi Data Analytics Assistant</p>
-        <span class="project-badge">AI · Self-service BI</span>
-      </div>
-      <p class="project-desc">Built a natural language analytics assistant for Product Owners and Analysts using Claude with MCP integration to SQL Server. Documented domain logic — bitmask classification, currency mapping, RTP formulas — enabling non-technical stakeholders to query data independently.</p>
-      <div class="project-chips">
-        <span class="chip">Claude AI</span>
-        <span class="chip">SQL Server</span>
-        <span class="chip">MCP</span>
-        <span class="chip">Prompt Engineering</span>
-      </div>
+      <div class="project-header"><p class="project-title">DeFi Liquidity Risk Monitor</p><span class="project-badge">Web3</span></div>
+      <p class="project-desc">Project in progress: Real-time monitoring of decentralized liquidity pools.</p>
     </div>
-
     <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">DailySummary BigQuery Data Pipeline</p>
-        <span class="project-badge">Data Engineering</span>
-      </div>
-      <p class="project-desc">Designed and shipped an hourly-refreshed aggregation table in BigQuery sourced from the core betting event log. Serves as the performance data backbone for games dashboards across the platform, reducing query costs and latency for downstream consumers.</p>
-      <div class="project-chips">
-        <span class="chip">BigQuery</span>
-        <span class="chip">Data Pipeline</span>
-        <span class="chip">SQL</span>
-        <span class="chip">Dashboard</span>
-      </div>
+      <div class="project-header"><p class="project-title">Risk-Based Classification & Scoring System</p><span class="project-badge">Risk</span></div>
+      <p class="project-desc">A player risk profiling approach that leverages historical betting behavior to assign dynamic risk scores.</p>
     </div>
-
     <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">Win/Loss Monitoring Dashboard</p>
-        <span class="project-badge">Tableau · Risk</span>
-      </div>
-      <p class="project-desc">Tableau risk control dashboard for company and player-level win/loss monitoring. Includes threshold alerting for SGD 10k company losses and SGD 5k single-player losses per week, with currency normalization across Southeast Asian markets.</p>
-      <div class="project-chips">
-        <span class="chip">Tableau</span>
-        <span class="chip">SQL Server</span>
-        <span class="chip">Risk Monitoring</span>
-        <span class="chip">Multi-currency</span>
-      </div>
+      <div class="project-header"><p class="project-title">Building a Multi-layer Framework to Detect Behavioral Anomalies</p><span class="project-badge">Detection</span></div>
+      <p class="project-desc">A multi-layer framework to detect sophisticated behavioral anomalies and separate malicious intent.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-header"><p class="project-title">Real-Time Defense Against Fraud and Abuse</p><span class="project-badge">Security</span></div>
+      <p class="project-desc">An automated defense pipeline processing event streams to instantly flag and block fraudulent activities.</p>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
-<div class="section-wrap fade-in" id="contact">
+<div class="section-wrap" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Let's connect</h2>
-  <p class="section-desc">Open to conversations about data, analytics, and building better products.</p>
-
   <div class="contact-grid">
-    <a class="contact-item" href="mailto:your@email.com">
-      <div class="contact-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-      </div>
-      <div>
-        <p class="contact-label">Email</p>
-        <p class="contact-value">your@email.com</p>
-      </div>
+    <a class="contact-item" href="mailto:blairrr.wang@gmail.com">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <p class="contact-label">Email</p><p class="contact-value">blairrr.wang@gmail.com</p>
     </a>
-    <a class="contact-item" href="https://github.com/BlairrrW" target="_blank" rel="noopener">
-      <div class="contact-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-      </div>
-      <div>
-        <p class="contact-label">GitHub</p>
-        <p class="contact-value">BlairrrW</p>
-      </div>
+    <a class="contact-item" href="https://github.com/BlairrrW" target="_blank">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+      <p class="contact-label">GitHub</p><p class="contact-value">BlairrrW</p>
     </a>
-    <a class="contact-item" href="https://linkedin.com/in/" target="_blank" rel="noopener">
-      <div class="contact-icon">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </div>
-      <div>
-        <p class="contact-label">LinkedIn</p>
-        <p class="contact-value">Blair Wang</p>
-      </div>
-    </a>
-    <a class="contact-item" href="https://blairrrw.github.io/portfolio/" target="_blank" rel="noopener">
-      <div class="contact-icon">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <div>
-        <p class="contact-label">Portfolio</p>
-        <p class="contact-value">blairrrw.github.io</p>
-      </div>
+    <a class="contact-item" href="https://www.linkedin.com/in/blairrr" target="_blank">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <p class="contact-label">LinkedIn</p><p class="contact-value">Blair Wang</p>
     </a>
   </div>
 </div>
 
-<footer>
-  Built with HTML &amp; GitHub Pages · Blair Wang © 2026
-</footer>
+<footer>Built with HTML &amp; GitHub Pages · Blair Wang © 2026</footer>
 
 <script>
-  // Dark mode toggle
   const toggle = document.getElementById('themeToggle');
-  const html = document.documentElement;
-  const saved = localStorage.getItem('theme');
-  if (saved) html.setAttribute('data-theme', saved);
-
   toggle.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
   });
-
-  // Typewriter for hero name
-  const target = document.getElementById('typed-name');
-  const text = 'Blair';
-  let i = 0;
-  function type() {
-    if (i <= text.length) {
-      target.textContent = text.slice(0, i);
-      i++;
-      setTimeout(type, i === 1 ? 400 : 90);
-    }
-  }
-  setTimeout(type, 800);
-
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
