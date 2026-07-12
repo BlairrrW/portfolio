@@ -81,28 +81,28 @@
   <div class="section">
     <p class="section-label">Problem</p>
     <h2>Business Background</h2>
-    <p>The existing risk control applied uniform fixed thresholds across all player profiles, resulting in excessive unnecessary suspensions for low-risk players — damaging user experience and platform revenue. Every triggered alert required a manual ticket to be opened and investigated regardless of actual risk level, consuming significant review time and operational capacity.</p>
+    <p>The existing risk control applied uniform fixed thresholds across all user profiles, resulting in excessive unnecessary suspensions for low-risk users — damaging user experience and platform revenue. Every triggered alert required a manual ticket to be opened and investigated regardless of actual risk level, consuming significant review time and operational capacity.</p>
     <p>Resources were not concentrated where they mattered, so genuinely high-risk events received insufficient attention.</p>
   </div>
 
   <div class="section">
     <p class="section-label">Solution</p>
     <h2>Multi-dimensional Scoring Model</h2>
-    <p>The scoring system comprises three dimensions that together reflect a player's overall risk level:</p>
+    <p>The scoring system comprises three dimensions that together reflect a user's overall risk level:</p>
     <ul>
-      <li><strong>Machine Learning dimension:</strong> Incorporates model predictions as a risk prior, reflecting the system-level risk assessment for the player</li>
+      <li><strong>Machine Learning dimension:</strong> Incorporates model predictions as a risk prior, reflecting the system-level risk assessment for the user</li>
       <li><strong>Game Performance dimension:</strong> Quantifies deviation in RTP, win rate, and hit rate relative to baselines using statistical scoring methods</li>
       <li><strong>User Profile dimension:</strong> Adjusts individual risk baselines based on contextual factors such as currency and service provider</li>
     </ul>
-    <p>The combined score classifies players into low, medium, and high risk tiers, with thresholds adjusted accordingly: low-risk players see thresholds relaxed to reduce false-positive noise; high-risk players are reviewed at the original threshold; critical-risk cases are escalated directly to manual review.</p>
+    <p>The combined score classifies users into low, medium, and high risk tiers, with thresholds adjusted accordingly: low-risk users see thresholds relaxed to reduce false-positive noise; high-risk users are reviewed at the original threshold; critical-risk cases are escalated directly to manual review.</p>
     <p>Implemented in two phases: simulation on historical data to validate outcomes, followed by live deployment to reduce go-live risk.</p>
   </div>
 
   <div class="section">
     <p class="section-label">Results</p>
     <h2>Key Insights & Business Impact</h2>
-    <p>The system operates across two trigger mechanisms — alerts (notifications) and limits (auto-suspension on threshold breach). Post-deployment data shows three measurable improvements: ① the multi-condition risk model replaces single-threshold alerts, cutting per-case review time by roughly 50%; ② the auto-suspend mechanism replaces manual limit adjustments, reducing unnecessary automatic game suspensions by 80% — exceeding the original ≥50% target — while substantially cutting the manual intervention burden on risk operators; ③ ticket volume drops 72%, allowing risk operators to focus exclusively on cases requiring genuine action — improving both user experience and operational efficiency simultaneously.</p>
-    <div class="two-col">
+    <p>The system operates across two trigger mechanisms — alerts (notifications) and limits (auto-suspension on threshold breach). Post-deployment data shows three measurable improvements:  the multi-condition risk model replaces single-threshold alerts, cutting per-case review time by roughly 50%;  the auto-suspend mechanism replaces manual limit adjustments, reducing unnecessary automatic game suspensions by 80% — exceeding the original ≥50% target — while substantially cutting the manual intervention burden on risk operators;  ticket volume drops 72%, allowing risk operators to focus exclusively on cases requiring genuine action — improving both user experience and operational efficiency simultaneously.</p>
+        <div class="two-col">
       <div class="metric-card">
         <p class="metric-num">72%</p>
         <p class="metric-label">Reduction in alert ticket volume</p>
@@ -111,14 +111,7 @@
         <p class="metric-num">80%</p>
         <p class="metric-label">Reduction in unnecessary automatic game suspensions</p>
       </div>
-      <div class="metric-card">
-        <p class="metric-num">~50%</p>
-        <p class="metric-label">Reduction in per-case review time</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">≥50%</p>
-        <p class="metric-label">Original target — exceeded</p>
-      </div>
+    </div>
     </div>
   </div>
 
@@ -126,7 +119,7 @@
     <p class="section-label">Reflection</p>
     <h2>Challenges & Trade-offs</h2>
     <p>The core trade-off was framing recall vs. precision in business terms: over-optimizing for recall keeps the false-positive burden high, continually burying risk operators in low-risk cases; over-optimizing for precision risks missing genuine threats, particularly novel anomaly patterns that sit in ambiguous territory early on.</p>
-    <p>A single global threshold couldn't serve both ends at once. The scoring tiers were designed to let each risk segment apply its own threshold looseness — relaxed for low-risk players to cut unnecessary friction, held at full sensitivity for high-risk players — structurally decomposing the "one threshold for everyone" tension into multiple segment-specific strategies.</p>
+    <p>A single global threshold couldn't serve both ends at once. The scoring tiers were designed to let each risk segment apply its own threshold looseness — relaxed for low-risk users to cut unnecessary friction, held at full sensitivity for high-risk users — structurally decomposing the "one threshold for everyone" tension into multiple segment-specific strategies.</p>
   </div>
 </div>
 

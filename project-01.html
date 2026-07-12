@@ -160,7 +160,7 @@
     <p class="section-label">Problem</p>
     <h2>Business Background</h2>
     <p>The platform lacked a proactive behavioral detection model: existing mechanisms relied on passive, rule-based alerts that struggled with complex behavioral patterns, generating high false-positive rates that fatigued the risk operations team and buried genuine anomalies.</p>
-    <p>There was also no baseline infrastructure for players or games, making it impossible to quantify how far any behavior deviated from normal — leaving the risk team unable to proactively surface emerging risks.</p>
+    <p>There was also no baseline infrastructure for users or games, making it impossible to quantify how far any behavior deviated from normal — leaving the risk team unable to proactively surface emerging risks.</p>
   </div>
 
   <div class="section">
@@ -168,55 +168,32 @@
     <h2>Framework Architecture</h2>
     <p>The framework consists of five modules, each targeting a distinct dimension of behavioral risk:</p>
     <ul>
-      <li><strong>Tags & Baselines (Module 0):</strong> Player segmentation via activity, heat, new-player, and volatility tags; game × currency baselines with Winsorization for robust outlier handling</li>
-      <li><strong>Player Behavior Detection (Module 1):</strong> Weighted scoring (short-term 60%, long-term 20%, benchmark comparison 20%) with Z-Score deviation quantification per player</li>
-      <li><strong>Player Group Detection (Module 1b):</strong> PCA/SVD dimensionality reduction followed by KMeans and MiniBatch KMeans clustering to surface cohorts with anomalous behavioral fingerprints</li>
+      <li><strong>Tags & Baselines (Module 0):</strong> User segmentation via activity, heat, new-user, and volatility tags; game × currency baselines with Winsorization for robust outlier handling</li>
+      <li><strong>User Behavior Detection (Module 1):</strong> Weighted scoring (short-term 60%, long-term 20%, benchmark comparison 20%) with Z-Score deviation quantification per user</li>
+      <li><strong>User Group Detection (Module 1b):</strong> PCA/SVD dimensionality reduction followed by KMeans and MiniBatch KMeans clustering to surface cohorts with anomalous behavioral fingerprints</li>
       <li><strong>Game System Detection (Module 2):</strong> Monitors 10-minute volatility, daily stability index, and baseline deviation to catch game-level systemic risk signals</li>
-      <li><strong>Player–Game Interaction (Module 3):</strong> Cross-analysis of player anomaly co-occurrence with specific games to detect coordinated behavioral patterns</li>
+      <li><strong>User–Game Interaction (Module 3):</strong> Cross-analysis of user anomaly co-occurrence with specific games to detect coordinated behavioral patterns</li>
     </ul>
   </div>
 
   <div class="section">
     <p class="section-label">Results</p>
     <h2>Key Insights & Business Impact</h2>
-    <p>The framework integrates over a year of daily transaction data (2024/09–2025/08) and two months of 10-minute granularity data across multiple currencies and game types. Five modules produce four standardized output types — player anomalies, cluster anomalies, game anomalies, and interaction anomalies — feeding directly into compliance workflows without manual reformatting.</p>
+    <p>The framework integrates over a year of daily transaction data (2024/09–2025/08) and two months of 10-minute granularity data across multiple currencies and game types. Five modules produce four standardized output types — user anomalies, cluster anomalies, game anomalies, and interaction anomalies — feeding directly into compliance workflows without manual reformatting.</p>
     <p>The framework surfaced three distinct case types in production:</p>
     <ul>
       <li><strong>Interaction anomaly:</strong> multiple accounts concentrated on a single game</li>
-      <li><strong>Individual anomaly:</strong> significant deviation from a player's own historical behavior</li>
+      <li><strong>Individual anomaly:</strong> significant deviation from a user's own historical behavior</li>
       <li><strong>Group anomaly (Cluster 18):</strong> synchronized concentration, pacing, and win rate</li>
     </ul>
     <p>All cases are filtered by P99 percentile thresholding, ensuring only the top 1% highest-risk signals enter the manual review queue.</p>
-
-    <div class="highlight-box">
-      <p>Since deployment, every case that entered the manual review queue has been confirmed by the risk team as a genuine anomaly, with <strong>zero false positives identified to date</strong>.</p>
-    </div>
-
-    <div class="two-col">
-      <div class="metric-card">
-        <p class="metric-num">0</p>
-        <p class="metric-label">False positives confirmed since deployment</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">P99</p>
-        <p class="metric-label">Percentile threshold — only top 1% risk cases enter review queue</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">5</p>
-        <p class="metric-label">Detection modules covering 4 risk dimensions</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">1 yr+</p>
-        <p class="metric-label">Historical data integrated (daily + 10-min granularity)</p>
-      </div>
-    </div>
   </div>
 
   <div class="section">
     <p class="section-label">Reflection</p>
     <h2>Challenges & Trade-offs</h2>
     <p>The core challenge was balancing sensitivity against false positives: Z-Score and P99 thresholds converged iteratively through alert volume vs. manual review feedback, rather than being set upfront.</p>
-    <p>A second trade-off was clustering method selection. Given the scale of the player base, full KMeans recomputation on every daily batch would scale compute cost linearly. Switching to MiniBatch KMeans — updating centroids from small sampled batches — kept the daily schedule within a fixed time window, at the cost of some cluster boundary precision. For the purpose of surfacing outlier cohorts, that minor boundary blur didn't compromise detection effectiveness.</p>
+    <p>A second trade-off was clustering method selection. Given the scale of the user base, full KMeans recomputation on every daily batch would scale compute cost linearly. Switching to MiniBatch KMeans — updating centroids from small sampled batches — kept the daily schedule within a fixed time window, at the cost of some cluster boundary precision. For the purpose of surfacing outlier cohorts, that minor boundary blur didn't compromise detection effectiveness.</p>
   </div>
 
 </div>

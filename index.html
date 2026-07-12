@@ -407,6 +407,12 @@
       line-height: 1.65;
     }
 
+    .project-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
     .dig-in {
       display: inline-flex;
       align-items: center;
@@ -415,7 +421,6 @@
       font-weight: 600;
       color: var(--blue);
       text-decoration: none;
-      margin-top: 0.25rem;
       transition: gap 0.15s;
     }
 
@@ -606,68 +611,78 @@
       <div class="project-header">
         <p class="project-title">Airdrop Hunter & Sybil Wallet Detection</p>
       </div>
+      <p class="project-desc">Built an unsupervised detection pipeline targeting Sybil attackers and airdrop hunters — wallets that simulate organic activity to game token distribution protocols. Applies behavioral clustering and deviation scoring to on-chain wallet activity to surface coordinated manipulation at scale.</p>
       <div class="project-chips">
         <span class="chip">Isolation Forest</span>
         <span class="chip">On-Chain Analytics</span>
         <span class="chip">Wallet Behavior</span>
         <span class="chip">Python</span>
       </div>
-      <p class="project-desc">Built an unsupervised detection pipeline targeting Sybil attackers and airdrop hunters — wallets that simulate organic activity to game token distribution protocols. Applies behavioral clustering and deviation scoring to on-chain wallet activity to surface coordinated manipulation at scale.</p>
-      <a class="dig-in" href="project-sybil.html">Dig in →</a>
+      <div class="project-footer">
+        <a class="dig-in" href="project-sybil.html">Dig in →</a>
+      </div>
     </div>
 
     <div class="project-card" onclick="location.href='project-01.html'" style="cursor:pointer;">
       <div class="project-header">
         <p class="project-title">User Behavioral Profiling & Segmentation: Building a Multi-dimensional Tagging Infrastructure</p>
       </div>
+      <p class="project-desc">Built a five-module behavioral detection framework from scratch for a high-volume digital platform, covering individual user behavior, coordinated group patterns, game-system drift, and user-game interaction anomalies. Outputs feed directly into compliance workflows — zero false positives confirmed by the risk team since deployment.</p>
       <div class="project-chips">
         <span class="chip">Anomaly Detection</span>
         <span class="chip">Unsupervised ML</span>
         <span class="chip">PCA/SVD</span>
         <span class="chip">User Profiling</span>
       </div>
-      <p class="project-desc">Built a five-module behavioral detection framework from scratch for a high-volume digital platform, covering individual player behavior, coordinated group patterns, game-system drift, and player-game interaction anomalies. Outputs feed directly into compliance workflows — zero false positives confirmed by the risk team since deployment.</p>
-      <a class="dig-in" href="project-01.html">Dig in →</a>
+      <div class="project-footer">
+        <a class="dig-in" href="project-01.html">Dig in →</a>
+      </div>
     </div>
 
     <div class="project-card" onclick="location.href='project-02.html'" style="cursor:pointer;">
       <div class="project-header">
         <p class="project-title">From Manual Review to Real-Time Defense: An Automated Dual-Defense Engine for Withdrawal Risk Control</p>
       </div>
+      <p class="project-desc">Designed a dual-defense rule engine to replace a manual withdrawal review process averaging 1–2 hours. A game-level statistical guard and user-level logic verification operate in layers, unified by a P0/P1/P2 priority framework — compressing risk exposure to under 15 minutes. One suspected rule-bypass case intercepted and confirmed since launch.</p>
       <div class="project-chips">
         <span class="chip">Real-Time Monitoring</span>
         <span class="chip">Withdrawal Risk</span>
         <span class="chip">Risk Control</span>
       </div>
-      <p class="project-desc">Designed a dual-defense rule engine to replace a manual withdrawal review process averaging 1–2 hours. A game-level statistical guard and player-level logic verification operate in layers, unified by a P0/P1/P2 priority framework — compressing risk exposure to under 15 minutes. One suspected rule-bypass case intercepted and confirmed since launch.</p>
-      <a class="dig-in" href="project-02.html">Dig in →</a>
+      <div class="project-footer">
+        <a class="dig-in" href="project-02.html">Dig in →</a>
+      </div>
     </div>
 
     <div class="project-card" onclick="location.href='project-03.html'" style="cursor:pointer;">
       <div class="project-header">
         <p class="project-title">Fewer False Alarms, Better UX: How Multi-condition Risk Scoring Replaced Single-Threshold Alerts</p>
       </div>
+      <p class="project-desc">Redesigned a risk alert system by replacing uniform single-threshold logic with a multi-dimensional scoring model integrating ML predictions, game performance metrics, and user profile signals. Post-deployment: ticket volume down 72%, unnecessary game suspensions reduced 80% — exceeding the original ≥50% target — and per-case review time cut by ~50%.</p>
       <div class="project-chips">
         <span class="chip">False-Positive Reduction</span>
         <span class="chip">Simulation Validation</span>
         <span class="chip">Feature Engineering</span>
       </div>
-      <p class="project-desc">Redesigned a risk alert system by replacing uniform single-threshold logic with a multi-dimensional scoring model integrating ML predictions, game performance metrics, and user profile signals. Post-deployment: ticket volume down 72%, unnecessary game suspensions reduced 80% — exceeding the original ≥50% target — and per-case review time cut by ~50%.</p>
-      <a class="dig-in" href="project-03.html">Dig in →</a>
+      <div class="project-footer">
+        <a class="dig-in" href="project-03.html">Dig in →</a>
+      </div>
     </div>
 
     <div class="project-card" onclick="location.href='project-04.html'" style="cursor:pointer;">
       <div class="project-header">
         <p class="project-title">Business Analytics Case Collection</p>
       </div>
+      <p class="project-desc">A collection of seven cross-functional analytics cases spanning marketing ROI, churn diagnosis, funnel optimization, causal inference, VIP profiling, feature performance, and provider segmentation. Each case translates raw behavioral data into a concrete business decision — adopted by product, marketing, or risk teams.</p>
       <div class="project-chips">
         <span class="chip">Funnel Analysis</span>
         <span class="chip">Segmentation</span>
         <span class="chip">Churn Analysis</span>
         <span class="chip">ROI Analysis</span>
       </div>
-      <p class="project-desc">A collection of seven cross-functional analytics cases spanning marketing ROI, churn diagnosis, funnel optimization, causal inference, VIP profiling, feature performance, and provider segmentation. Each case translates raw behavioral data into a concrete business decision — adopted by product, marketing, or risk teams.</p>
-      <a class="dig-in" href="project-04.html">Dig in →</a>
+      <div class="project-footer">
+        <a class="dig-in" href="project-04.html">Dig in →</a>
+      </div>
     </div>
 
   </div>

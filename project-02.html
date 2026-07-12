@@ -74,14 +74,14 @@
   <div class="section">
     <p class="section-label">Overview</p>
     <h2>Executive Summary</h2>
-    <p>Led the architectural design of a real-time risk system, replacing a manual withdrawal-triggered review process averaging 1–2 hours with a sub-15-minute dual-defense rule engine. A game-level statistical guard and player-level logic verification operate in layers, unified by a P0/P1/P2 priority decision framework — compressing fraud exposure from hours to under 15 minutes.</p>
+    <p>Led the architectural design of a real-time risk system, replacing a manual withdrawal-triggered review process averaging 1–2 hours with a sub-15-minute dual-defense rule engine. A game-level statistical guard and user-level logic verification operate in layers, unified by a P0/P1/P2 priority decision framework — compressing fraud exposure from hours to under 15 minutes.</p>
     <p>This project focuses on real-time interception at the point of critical action — completing the allow/block decision before a withdrawal transaction proceeds.</p>
   </div>
 
   <div class="section">
     <p class="section-label">Problem</p>
     <h2>Business Background</h2>
-    <p>The existing mechanism relied on manual review triggered only when a player submitted a withdrawal request, with each review taking an average of 1–2 hours — during which anomalous activity could already cause damage. More critically, business stakeholders were uneasy about approving withdrawals without any real-time safeguard in place.</p>
+    <p>The existing mechanism relied on manual review triggered only when a user submitted a withdrawal request, with each review taking an average of 1–2 hours — during which anomalous activity could already cause damage. More critically, business stakeholders were uneasy about approving withdrawals without any real-time safeguard in place.</p>
     <p>This drove the need for a set of real-time features and corresponding strategies designed specifically around the moment of withdrawal, replacing the time-consuming manual review process.</p>
   </div>
 
@@ -91,7 +91,7 @@
     <p>The architecture consists of two independent defense lines feeding into a unified action framework:</p>
     <ul>
       <li><strong>Defense Line A — Game Statistical Guard:</strong> Scans every 15 minutes, comparing current game metrics (RTP, win rate, hit rate) against a 60-day historical baseline. Thresholds are dynamically calibrated per game type to minimize false positives.</li>
-      <li><strong>Defense Line B — Player Physical Logic Verification:</strong> Validates player behavior against plausibility constraints through three checks — payout limit monitoring, zero-cost profit detection, and anomalous frequency scanning — flagging patterns that fall outside what statistics alone can catch.</li>
+      <li><strong>Defense Line B — User Physical Logic Verification:</strong> Validates user behavior against plausibility constraints through three checks — payout limit monitoring, zero-cost profit detection, and anomalous frequency scanning — flagging patterns that fall outside what statistics alone can catch.</li>
       <li><strong>P0/P1/P2 Action Framework:</strong> Signals from both lines feed into a tiered decision layer: P0 triggers automatic real-time intervention, P1 queues for urgent manual review, P2 enters routine monitoring.</li>
     </ul>
   </div>
@@ -106,27 +106,6 @@
       <li>Defense Line B's three physical logic checks systematically intercept rule-bypass and API manipulation attempts outside statistical detection range</li>
     </ul>
     <p>Defense Line A also surfaced game system deviation events that had previously gone undetected due to the lack of systematic monitoring.</p>
-    <div class="highlight-box">
-      <p>Since launch, the system intercepted one suspected rule-bypass case, currently under investigation by the risk team — <strong>validating Defense Line B's detection capability in a live environment</strong>.</p>
-    </div>
-    <div class="two-col">
-      <div class="metric-card">
-        <p class="metric-num">&lt;15 min</p>
-        <p class="metric-label">Risk exposure window (down from 1–2 hours)</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">3</p>
-        <p class="metric-label">Physical logic checks in Defense Line B</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">P0/P1/P2</p>
-        <p class="metric-label">Tiered action framework for standardized risk response</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-num">60 days</p>
-        <p class="metric-label">Historical baseline window for Defense Line A calibration</p>
-      </div>
-    </div>
   </div>
 
   <div class="section">
