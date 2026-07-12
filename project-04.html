@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Analytics Cases — Blair Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #ffffff; --bg2: #f8f9fa; --text: #111111; --muted: #6B7280; --border: #E5E7EB; --blue: #2563EB; --blue-light: #EFF6FF; --card-bg: #ffffff; --nav-bg: rgba(255,255,255,0.92); }
+    [data-theme="dark"] { --bg: #0f1117; --bg2: #1a1d27; --text: #F3F4F6; --muted: #9CA3AF; --border: #2a2d3a; --blue: #60A5FA; --blue-light: #1e2a3a; --card-bg: #1a1d27; --nav-bg: rgba(15,17,23,0.92); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-left { display: flex; align-items: center; gap: 1rem; }
+    .back-link { font-size: 14px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text); }
+    .nav-logo { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .theme-toggle { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+    .theme-toggle:hover { background: var(--bg2); color: var(--text); }
+    .icon-sun, .icon-moon { width: 16px; height: 16px; }
+    [data-theme="light"] .icon-moon { display: none; }
+    [data-theme="dark"] .icon-sun { display: none; }
+    .hero { max-width: 760px; margin: 0 auto; padding: 8rem 2rem 3rem; }
+    .project-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .badge { font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 99px; background: var(--blue-light); color: var(--blue); }
+    .badge-outline { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
+    h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1.5rem; }
+    .project-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+    .chip { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+    .content { max-width: 760px; margin: 0 auto; padding: 0 2rem 6rem; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+    h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    p { color: var(--muted); margin-bottom: 1rem; line-height: 1.75; }
+    p:last-child { margin-bottom: 0; }
+    .intro { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .case-list { display: flex; flex-direction: column; gap: 0; }
+    .case-item { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+    .case-item:last-child { border-bottom: none; }
+    .case-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .case-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .case-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--blue-light); color: var(--blue); white-space: nowrap; flex-shrink: 0; }
+    .case-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.5rem 1rem; margin-bottom: 0.75rem; align-items: start; }
+    .case-row-label { font-size: 12px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 2px; }
+    .case-row p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.65; }
+    .finding-highlight { font-size: 14px; color: var(--text); font-weight: 500; background: var(--blue-light); border-radius: 6px; padding: 0.6rem 0.9rem; display: inline-block; margin-top: 0.25rem; }
+    @media (max-width: 560px) { .case-row { grid-template-columns: 1fr; } .case-header { flex-direction: column; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-left"><a class="back-link" href="index.html">← Back</a></div>
+  <a class="nav-logo" href="index.html">Blair Wang</a>
+  <button class="theme-toggle" id="themeToggle">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="project-meta">
+    <span class="badge">BI · Cross-functional</span>
+    <span class="badge-outline">Titansoft · 2023–2024</span>
+  </div>
+  <h1>Business Analytics Case Collection</h1>
+  <div class="project-chips">
+    <span class="chip">SQL</span>
+    <span class="chip">Tableau</span>
+    <span class="chip">Funnel Analysis</span>
+    <span class="chip">Segmentation</span>
+    <span class="chip">Causal Inference</span>
+    <span class="chip">ROI Analysis</span>
+  </div>
+</div>
+<hr class="divider" />
+
+<div class="content">
+  <div class="intro">
+    <p class="section-label">Overview</p>
+    <p>Seven cross-functional analytics cases spanning marketing ROI, churn diagnosis, product funnel optimization, causal inference, VIP profiling, feature performance evaluation, and provider segmentation. Each case follows a consistent structure: business question → method → key finding → decision adopted.</p>
+  </div>
+
+  <div class="case-list">
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">Euro Cup Voucher Campaign ROI Analysis</p>
+        <span class="case-badge">Marketing ROI</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>Did the Euro Cup voucher campaign generate positive returns? How did conversion differ across player segments and providers?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Segmented conversion analysis by player type (new/repeat/return) and provider; ROI calculation; post-event return timing and betting day tracking.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">ROI = 4.54 · 20% of voucher users returned post-event · avg. return: Day 5.64</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Day 5–6 re-engagement notification and extra rewards for players betting 4+ days adopted into subsequent marketing strategy.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">B2B Active Player Churn Investigation</p>
+        <span class="case-badge">Churn Diagnosis</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>Why did active B2B players drop significantly in the THB and IDR markets? Are the churn drivers market-specific?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Analyzed player login timing, Bet Credit structure, and agent activity status per SMA, cross-referenced by market and audit group.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">Two churn profiles: "has balance, not playing" vs "wants to play, no balance" · Suspicious agent inactivity flagged in audit groups zad & hkq</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Differentiated re-engagement strategies per churn profile; suspicious audit groups flagged for further investigation.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">Game Lobby UX Funnel Analysis</p>
+        <span class="case-badge">Product Funnel</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>After launching the new game lobby, why were players struggling to find slot games? Where were users dropping off?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Built a full browsing funnel tracking scroll and click rates at each lobby section; analyzed navigation paths of users who stopped scrolling.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">Three major drop points: Slots→Category (-27%) · Category→Provider Banner (-19%) · Provider Banner→Provider Card (-48%)</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Product team adjusted lobby architecture based on analysis — promotion entry earlier in flow, games embedded directly in categories.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">Email Campaign Causal Analysis</p>
+        <span class="case-badge">Causal Inference</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>Does the Cashbox prize notification email actually drive player betting behavior? Do readers outperform non-readers?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Between-group comparison (readers vs. non-readers); within-group peak performance timing analysis; turnover trend before and after reading.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">Readers outperformed non-readers — but no sufficient statistical evidence of causality. Correlation, not causation.</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Email repositioned away from primary turnover driver; channel investment and messaging strategy redesigned accordingly.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">VIP Player Behavioral Profiling</p>
+        <span class="case-badge">User Profiling</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>What behavioral patterns define a newly identified high-potential player? How does their engagement compare to existing VIP benchmarks?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Analyzed active days from registration, provider and game distribution, turnover and win/loss trends; benchmarked against existing VIP player.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">Higher engagement in even months · Strong loyalty to favorite game · Stickiness and bet size exceed VIP benchmark at comparable stage</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Personalized game recommendations (Bonanza series, high-volatility games) and even-month promotions adopted into recommendation strategy.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">Cashbox Promotion Feature Performance</p>
+        <span class="case-badge">Feature Analytics</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>How did the Cashbox feature perform post-launch on ROI? Did prize distribution follow design rules? Did player turnover increase?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Tracked daily prize distribution and achievement rates; calculated ROI; analyzed turnover changes for prize winners; validated prize probability distribution against 40/40/20 design spec.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">141 players won prizes in 6 days · Prizes = 4.9% of net winnings · Distribution matched 40/40/20 spec · Winners showed turnover growth</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Current settings maintained for two-week observation; Mystery Mode proposed for players completing all prizes to sustain engagement.</p></div>
+    </div>
+
+    <div class="case-item">
+      <div class="case-header">
+        <p class="case-title">Game Provider Preference Segmentation</p>
+        <span class="case-badge">Segmentation</span>
+      </div>
+      <div class="case-row"><p class="case-row-label">Question</p><p>What proportion of players concentrate on only a few providers? Are there substitution patterns between providers?</p></div>
+      <div class="case-row"><p class="case-row-label">Method</p><p>Segmented players by number of providers played (1/2/multiple); analyzed provider distribution per segment; deep-dived into substitution preferences among players avoiding mainstream providers.</p></div>
+      <div class="case-row"><p class="case-row-label">Finding</p><p><span class="finding-highlight">76% of players (91,741) played only 1–2 providers · 80% of non-mainstream players concentrated on a single alternative provider</span></p></div>
+      <div class="case-row"><p class="case-row-label">Impact</p><p>Findings informed provider partnership prioritization and personalized recommendation strategy; targeted promotions by provider preference profile recommended.</p></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) html.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+</body>
+</html>
