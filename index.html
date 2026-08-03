@@ -594,7 +594,7 @@
   <div class="hero-bg"></div>
   <div class="hero-blob"></div>
   <div class="hero-inner">
-    <p class="hero-label">Data Analysis · Risk Strategy · Fraud Detection</p>
+    <p class="hero-label">Risk Analytics · Fraud Detection · Strategy Optimization</p>
     <h1 class="hero-title">
       Hi, I'm <span class="highlight" id="typed-name"></span><span class="cursor"></span>
     </h1>
@@ -631,24 +631,27 @@
       <p class="skill-card-label">Data & Query</p>
       <span class="skill-tag">SQL</span>
       <span class="skill-tag">BigQuery</span>
+      <span class="skill-tag">Dune Analytics</span>
       <span class="skill-tag">Python</span>
     </div>
     <div class="skill-card">
       <p class="skill-card-label">Visualization</p>
       <span class="skill-tag">Tableau</span>
+      <span class="skill-tag">QlikView</span>
       <span class="skill-tag">Dashboard Design</span>
       <span class="skill-tag">KPI Reporting</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Analytics & ML</p>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Statistics</span>
+      <span class="skill-tag">PCA/SVD · KMeans</span>
     </div>
     <div class="skill-card">
       <p class="skill-card-label">Domain Background</p>
       <span class="skill-tag">Banking & AML</span>
       <span class="skill-tag">High-Frequency Trading Platforms</span>
       <span class="skill-tag">Web3 & Blockchain</span>
-    </div>
-    <div class="skill-card">
-      <p class="skill-card-label">Education</p>
-      <p class="skill-tag">MS Applied Mathematics, NCHU</p>
-      <p class="skill-tag">BS Statistics, TKU</p>
     </div>
   </div>
 </div>
@@ -665,7 +668,7 @@
   <div class="project-header">
     <p class="project-title">Airdrop Hunter & Sybil Wallet Detection</p>
   </div>
-  <p class="project-desc">Replicated Arbitrum Foundation's on-chain Sybil-detection methodology — funding-source graph analysis and Louvain community detection — to surface wallet clusters coordinated by a single operator to farm airdrops. Validated against 14,000+ real confirmed Sybil addresses (Hop Protocol) without using any labels during clustering, achieving 94% average cluster purity (87.5% fully pure).</p>
+  <p class="project-desc">Reproduced Arbitrum Foundation's on-chain Sybil-detection methodology — funder-based graph analysis and Louvain community detection — to identify wallet clusters coordinated by a single operator to farm airdrops. Validated against a sample of Hop Protocol's 14,195 confirmed Sybil addresses without label-guided clustering, achieving 94% average cluster purity (87.5% fully pure).</p>
   <div class="project-chips">
     <span class="chip">Graph Analysis</span>
     <span class="chip">On-Chain Analytics</span>
@@ -678,7 +681,7 @@
       <div class="project-header">
         <p class="project-title">User Behavioral Profiling & Segmentation: Building a Multi-dimensional Tagging Infrastructure</p>
       </div>
-      <p class="project-desc">Architected a multi-dimensional behavioral detection framework from scratch — combining feature engineering, Z-Score weighted scoring, and unsupervised clustering (PCA/SVD + KMeans) across five modules — to close the gap left by passive rule-based alerts that missed complex behavioral and collusive patterns. The framework automatically surfaces the top 1% highest-risk cases across individual, group, game-system, and cross-entity dimensions; manual review of flagged accounts has confirmed 78% precision.</p>
+      <p class="project-desc">Architected a multi-dimensional behavioral detection framework from scratch — combining feature engineering, Z-Score weighted scoring, and unsupervised clustering (PCA/SVD + KMeans) across individual, group, game-system, and interaction dimensions — to close the gap left by passive rule-based alerts that missed complex behavioral and collusive patterns. The framework surfaces the top 1% highest-risk cases at 78% precision, including catching an exploit that evaded rule-based detection for 3+ years.</p>
       <div class="project-chips">
         <span class="chip">Anomaly Detection</span>
         <span class="chip">Unsupervised ML</span>
@@ -691,7 +694,7 @@
       <div class="project-header">
         <p class="project-title">From Manual Review to Real-Time Defense: An Automated Dual-Defense Engine for Withdrawal Risk Control</p>
       </div>
-      <p class="project-desc">Led end-to-end delivery of a real-time dual-defense rule engine — from architecture design and cross-functional alignment with business stakeholders to production rollout with the engineering team. A game-level statistical guard (scanning every 15 minutes against a 60-day baseline) and user-level physical logic verification operate in layers, unified by a P0/P1/P2 tiered action framework — cutting decision time to under 15 minutes and systematically intercepting rule-bypass and API manipulation attempts outside statistical detection range.</p>
+      <p class="project-desc">Owned the end-to-end delivery of a real-time risk control engine — from architecture design and cross-functional alignment with engineering and business stakeholders to production rollout. A game-level statistical guard and user-level logic verification operate in layers, automating a tiered (high/medium/low severity) risk response workflow and reducing manual decision latency from 1–2 hours to under 15 minutes.</p>
       <div class="project-chips">
         <span class="chip">Real-Time Monitoring</span>
         <span class="chip">Withdrawal Risk</span>
@@ -703,7 +706,7 @@
       <div class="project-header">
         <p class="project-title">Fewer False Alarms, Better UX: How Multi-condition Risk Scoring Replaced Single-Threshold Alerts</p>
       </div>
-      <p class="project-desc">Redesigned a single-threshold alert system into a multi-dimensional risk scorecard — integrating ML predictions, game performance metrics, and user profile signals into tiered thresholds — to resolve excessive low-risk suspensions that were hurting user experience and revenue. Validated via historical simulation across six configurations before live rollout: review time cut 50%, false-positive suspensions reduced 80% (exceeding the original ≥50% target), and alert tickets down 72%.</p>
+      <p class="project-desc">Redesigned a single-threshold alert system into a multi-dimensional risk scorecard — integrating ML predictions, game performance metrics, and user profile signals into tiered thresholds — to resolve excessive low-risk suspensions that were hurting user experience and revenue. Validated via historical simulation before live rollout: review time cut 50%, false-positive suspensions reduced 80% (exceeding the original ≥50% target), and alert tickets down 72%.</p>
       <div class="project-chips">
         <span class="chip">False-Positive Reduction</span>
         <span class="chip">Simulation Validation</span>
