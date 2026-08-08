@@ -1,15 +1,18 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blair Wang — Data Analyst</title>
+  <title>Blair Wang — Data Scientist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --bg: #ffffff;
       --bg2: #f8f9fa;
@@ -23,7 +26,7 @@
       --nav-bg: rgba(255,255,255,0.92);
       --hero-dot: rgba(37,99,235,0.07);
     }
-
+ 
     [data-theme="dark"] {
       --bg: #0f1117;
       --bg2: #1a1d27;
@@ -37,9 +40,9 @@
       --nav-bg: rgba(15,17,23,0.92);
       --hero-dot: rgba(96,165,250,0.06);
     }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
@@ -49,7 +52,7 @@
       -webkit-font-smoothing: antialiased;
       transition: background 0.3s, color 0.3s;
     }
-
+ 
     /* NAV */
     nav {
       position: fixed;
@@ -66,7 +69,7 @@
       justify-content: space-between;
       transition: background 0.3s, border-color 0.3s;
     }
-
+ 
     .nav-logo {
       font-weight: 700;
       font-size: 15px;
@@ -74,28 +77,28 @@
       color: var(--text);
       text-decoration: none;
     }
-
+ 
     .nav-right {
       display: flex;
       align-items: center;
       gap: 2rem;
     }
-
+ 
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
+ 
     .nav-links a {
       font-size: 14px;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.15s;
     }
-
+ 
     .nav-links a:hover { color: var(--text); }
-
+ 
     /* DARK TOGGLE */
     .theme-toggle {
       width: 36px;
@@ -110,13 +113,13 @@
       transition: border-color 0.15s, background 0.15s;
       color: var(--muted);
     }
-
+ 
     .theme-toggle:hover { background: var(--bg2); color: var(--text); }
-
+ 
     .icon-sun, .icon-moon { width: 16px; height: 16px; }
     [data-theme="light"] .icon-moon { display: none; }
     [data-theme="dark"] .icon-sun { display: none; }
-
+ 
     /* HERO */
     #hero {
       min-height: 100vh;
@@ -126,7 +129,7 @@
       overflow: hidden;
       padding: 0 2rem;
     }
-
+ 
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -134,7 +137,7 @@
       background-size: 28px 28px;
       pointer-events: none;
     }
-
+ 
     .hero-blob {
       position: absolute;
       width: 600px;
@@ -145,11 +148,11 @@
       right: -150px;
       pointer-events: none;
     }
-
+ 
     [data-theme="dark"] .hero-blob {
       background: radial-gradient(circle, rgba(96,165,250,0.08) 0%, transparent 70%);
     }
-
+ 
     .hero-inner {
       max-width: 720px;
       margin: 0 auto;
@@ -158,7 +161,7 @@
       z-index: 1;
       padding-top: 4rem;
     }
-
+ 
     .hero-label {
       font-size: 13px;
       font-weight: 600;
@@ -170,7 +173,7 @@
       transform: translateY(16px);
       animation: fadeUp 0.6s ease 0.1s forwards;
     }
-
+ 
     .hero-title {
       font-size: clamp(2.8rem, 7vw, 4.2rem);
       font-weight: 700;
@@ -182,13 +185,13 @@
       transform: translateY(16px);
       animation: fadeUp 0.6s ease 0.2s forwards;
     }
-
+ 
     .hero-title .highlight {
       position: relative;
       display: inline-block;
       color: var(--blue);
     }
-
+ 
     .cursor {
       display: inline-block;
       width: 3px;
@@ -198,9 +201,9 @@
       vertical-align: middle;
       animation: blink 1s step-end infinite;
     }
-
+ 
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
+ 
     .hero-sub {
       font-size: 1.1rem;
       color: var(--muted);
@@ -210,7 +213,7 @@
       transform: translateY(16px);
       animation: fadeUp 0.6s ease 0.35s forwards;
     }
-
+ 
     .hero-actions {
       display: flex;
       gap: 0.75rem;
@@ -219,39 +222,11 @@
       transform: translateY(16px);
       animation: fadeUp 0.6s ease 0.45s forwards;
     }
-
-    .hero-stats {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 4rem;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease 0.6s forwards;
-    }
-
-    .stat-num {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .stat-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
-
+ 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-
+ 
     /* BUTTONS */
     .btn-primary {
       display: inline-flex;
@@ -266,9 +241,9 @@
       text-decoration: none;
       transition: opacity 0.15s, transform 0.15s;
     }
-
+ 
     .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
+ 
     .btn-ghost {
       display: inline-flex;
       align-items: center;
@@ -282,9 +257,9 @@
       text-decoration: none;
       transition: border-color 0.15s, transform 0.15s, background 0.15s;
     }
-
+ 
     .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); background: var(--bg2); }
-
+ 
     /* SECTIONS */
     .section-wrap {
       max-width: 720px;
@@ -292,7 +267,7 @@
       padding: 6rem 2rem;
       border-top: 1px solid var(--border);
     }
-
+ 
     .section-label {
       font-size: 12px;
       font-weight: 700;
@@ -301,154 +276,161 @@
       color: var(--blue);
       margin-bottom: 0.75rem;
     }
-
+ 
     .section-title {
       font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: -0.025em;
       margin-bottom: 0.75rem;
     }
-
+ 
     .section-desc {
       color: var(--muted);
       margin-bottom: 3rem;
       max-width: 480px;
     }
-
+ 
     /* SKILLS */
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-
+ 
     .skill-card {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.9rem;
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.6rem 1.8rem;
+      padding: 1.1rem 1.6rem;
       background: var(--card-bg);
       transition: border-color 0.2s, transform 0.2s;
     }
-
+ 
     .skill-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-
+ 
     .skill-card-label {
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 0.85rem;
+      flex: 0 0 auto;
+      min-width: 210px;
     }
-
+ 
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.6rem;
+    }
+ 
     .skill-tag {
-      font-size: 14.5px;
-      color: var(--muted);
-      display: block;
-      line-height: 1.9;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 4px 12px;
+      border-radius: 99px;
     }
-
-    @media (max-width: 560px) {
-      .skills-grid { grid-template-columns: 1fr; }
+ 
+    @media (max-width: 700px) {
+      .skill-card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .skill-card-label { min-width: 0; }
     }
-
-    /* PROJECTS */
-    .projects-list { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .project-card {
+ 
+    /* PROJECTS - simplified image + name cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+ 
+    .project-card-simple {
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.5rem;
+      overflow: hidden;
       background: var(--card-bg);
       transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
       cursor: pointer;
     }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--blue);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .project-card:hover {
+ 
+    .project-card-simple:hover {
       border-color: var(--blue-mid);
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(37,99,235,0.08);
     }
-
-    [data-theme="dark"] .project-card:hover {
+ 
+    [data-theme="dark"] .project-card-simple:hover {
       box-shadow: 0 8px 32px rgba(96,165,250,0.08);
     }
-
-    .project-card:hover::before { opacity: 1; }
-
-    .project-header {
-      margin-bottom: 0.5rem;
+ 
+    .project-card-simple img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
     }
-
-    .project-title {
-      font-size: 1rem;
+ 
+    .project-card-simple .project-name {
+      padding: 0.9rem 1.1rem 0.2rem;
+      font-size: 14.5px;
       font-weight: 600;
-      color: var(--text);
+    }
+ 
+    .project-card-simple .project-desc {
+      padding: 0 1.1rem 1rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+ 
+    @media (max-width: 560px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+ 
+    /* DATA VISUALIZATION */
+    .viz-block {
+      margin-bottom: 3rem;
+    }
+ 
+    .viz-block:last-child { margin-bottom: 0; }
+ 
+    .viz-tool-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
       margin-bottom: 0.6rem;
     }
-
-    .project-desc {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.65;
+ 
+    .viz-block img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
     }
-
-    .project-footer {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 1rem;
-    }
-
-    .dig-in {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
+ 
+    .viz-note {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--blue);
-      text-decoration: none;
-      transition: gap 0.15s;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      max-width: 560px;
     }
-
-    .dig-in:hover { gap: 0.5rem; }
-    .project-card:not([onclick]) .dig-in { display: none; }
-
-    .project-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 3px 12px;
-      border-radius: 99px;
-      background: var(--blue-light);
-      color: var(--blue);
-    }
-
+ 
     /* CONTACT */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-
+ 
     .contact-item {
       display: flex;
       flex-direction: column;
@@ -463,9 +445,9 @@
       background: var(--card-bg);
       transition: border-color 0.2s, transform 0.2s;
     }
-
+ 
     .contact-item:hover { border-color: var(--blue); transform: translateY(-2px); }
-
+ 
     .contact-icon {
       width: 36px;
       height: 36px;
@@ -476,7 +458,7 @@
       justify-content: center;
       flex-shrink: 0;
     }
-
+ 
     .contact-icon svg {
       width: 16px; height: 16px;
       stroke: var(--blue); fill: none;
@@ -484,22 +466,22 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-
+ 
     .contact-label { font-size: 11px; color: var(--muted); }
     .contact-value { font-weight: 600; font-size: 14px; }
-
+ 
     /* SCROLL FADE */
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
+ 
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
+ 
     footer {
       text-align: center;
       padding: 3rem 2rem;
@@ -507,75 +489,22 @@
       color: var(--muted);
       border-top: 1px solid var(--border);
     }
-
+ 
     @media (max-width: 560px) {
       .contact-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.5rem; }
       .nav-links { display: none; }
-    }
-
-    /* EXPANDABLE CARD */
-    .expand-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--blue);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .expand-toggle:hover { opacity: 0.75; }
-
-    .expand-content {
-      display: none;
-      margin-top: 1.25rem;
-      border-top: 1px solid var(--border);
-      padding-top: 1.25rem;
-    }
-
-    .expand-content.open { display: block; }
-
-    .case-block {
-      margin-bottom: 1.25rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .case-block:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .case-block-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.5rem;
-    }
-
-    .case-block p {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
     }
   </style>
 </head>
 <body>
-
+ 
 <nav>
   <a class="nav-logo" href="#hero">Blair Wang</a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#dataviz">Data Viz</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -588,175 +517,176 @@
     </button>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-blob"></div>
   <div class="hero-inner">
-    <p class="hero-label">Risk Analytics · Fraud Detection · Strategy Optimization</p>
     <h1 class="hero-title">
       Hi, I'm <span class="highlight" id="typed-name"></span><span class="cursor"></span>
     </h1>
     <p class="hero-sub">
-      Data Analyst specializing in risk control and BI systems for high-frequency platforms. Currently extending that anomaly detection approach to Web3 — on-chain data, DeFi risk, and wallet behavior analytics.
+      Data Analyst with 3+ years of experience in large-scale data analysis, machine learning, and data-driven decision-making, specialized in behavioral modeling, anomaly detection, and predictive scoring to optimize product performance and user experience. Background spans behavioral analytics, decisioning systems, and scalable data infrastructure, from independently designing models and engineering features to owning end-to-end deployment.
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="#projects">View my work →</a>
       <a class="btn-ghost" href="#contact">Get in touch</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <p class="stat-num">3+ yrs</p>
-        <p class="stat-label">High-Volume Data Platforms</p>
-        <p class="stat-label">Product Risk & Analytics</p>
-      </div>
-      <div class="stat-divider"></div>
-      <div>
-        <p class="stat-num">7+ yrs</p>
-        <p class="stat-label">Finance, Banking & AML</p>
-        <p class="stat-label">ACAMS Certified</p>
-      </div>
-    </div>
   </div>
 </section>
-
+ 
 <!-- SKILLS -->
 <div class="section-wrap fade-in" id="skills">
   <p class="section-label">Skills</p>
   <h2 class="section-title">What I work with</h2>
-  <p class="section-desc">Hands-on experience across analytics, data engineering, and product intelligence.</p>
+  <p class="section-desc">Hands-on experience across modeling, data engineering, and visualization.</p>
   <div class="skills-grid">
     <div class="skill-card">
-      <p class="skill-card-label">Data & Query</p>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">BigQuery</span>
-      <span class="skill-tag">Dune Analytics</span>
-      <span class="skill-tag">Python</span>
+      <p class="skill-card-label">Modeling & Programming</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">SAS</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Statistical Modeling</span>
+      </div>
     </div>
     <div class="skill-card">
-      <p class="skill-card-label">Visualization</p>
-      <span class="skill-tag">Tableau</span>
-      <span class="skill-tag">QlikView</span>
-      <span class="skill-tag">Dashboard Design</span>
-      <span class="skill-tag">KPI Reporting</span>
+      <p class="skill-card-label">Data Engineering & Infrastructure</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Google BigQuery</span>
+        <span class="skill-tag">MS SQL Server</span>
+        <span class="skill-tag">Airflow</span>
+      </div>
     </div>
     <div class="skill-card">
-      <p class="skill-card-label">Analytics & ML</p>
-      <span class="skill-tag">Machine Learning</span>
-      <span class="skill-tag">Statistics</span>
-      <span class="skill-tag">PCA/SVD · KMeans</span>
+      <p class="skill-card-label">Visualization & BI</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">QlikView</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Metabase</span>
+        <span class="skill-tag">Looker Studio</span>
+        <span class="skill-tag">Dune Analytics</span>
+      </div>
     </div>
     <div class="skill-card">
-      <p class="skill-card-label">Domain Background</p>
-      <span class="skill-tag">Banking & AML</span>
-      <span class="skill-tag">High-Frequency Trading Platforms</span>
-      <span class="skill-tag">Web3 & Blockchain</span>
+      <p class="skill-card-label">Analytical Methodologies</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Behavioral Analytics</span>
+        <span class="skill-tag">Anomaly Detection</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Feature Engineering</span>
+        <span class="skill-tag">AI / MCP Application</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Product & Digital Analytics</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Product Analysis</span>
+        <span class="skill-tag">GA4</span>
+        <span class="skill-tag">GTM</span>
+        <span class="skill-tag">Hotjar</span>
+      </div>
     </div>
   </div>
 </div>
-
+ 
 <!-- PROJECTS -->
 <div class="section-wrap fade-in" id="projects">
   <p class="section-label">Projects</p>
   <h2 class="section-title">Selected work</h2>
-  <p class="section-desc">Risk modeling, anomaly detection, and behavioral analytics.</p>
-
-  <div class="projects-list">
-
-    <div class="project-card" onclick="location.href='project-sybil.html'" style="cursor:pointer;">
-  <div class="project-header">
-    <p class="project-title">Airdrop Hunter & Sybil Wallet Detection</p>
-  </div>
-  <p class="project-desc">Reproduced Arbitrum Foundation's on-chain Sybil-detection methodology — funder-based graph analysis and Louvain community detection — to identify wallet clusters coordinated by a single operator to farm airdrops. Validated against a sample of Hop Protocol's 14,195 confirmed Sybil addresses without label-guided clustering, achieving 94% average cluster purity (87.5% fully pure).</p>
-  <div class="project-chips">
-    <span class="chip">Graph Analysis</span>
-    <span class="chip">On-Chain Analytics</span>
-    <span class="chip">Dune SQL</span>
-    <span class="chip">Python</span>
-  </div>
-</div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">User Behavioral Profiling & Segmentation: Building a Multi-dimensional Tagging Infrastructure</p>
-      </div>
-      <p class="project-desc">Architected a multi-dimensional behavioral detection framework from scratch — combining feature engineering, Z-Score weighted scoring, and unsupervised clustering (PCA/SVD + KMeans) across individual, group, game-system, and interaction dimensions — to close the gap left by passive rule-based alerts that missed complex behavioral and collusive patterns. The framework surfaces the top 1% highest-risk cases at 78% precision, including catching an exploit that evaded rule-based detection for 3+ years.</p>
-      <div class="project-chips">
-        <span class="chip">Anomaly Detection</span>
-        <span class="chip">Unsupervised ML</span>
-        <span class="chip">PCA/SVD</span>
-        <span class="chip">User Profiling</span>
-      </div>
+  <p class="section-desc">A collection of projects applying data-driven modeling to real-world business problems.</p>
+ 
+  <div class="projects-grid">
+ 
+    <div class="project-card-simple" onclick="location.href='project-sybil.html'">
+      <img src="assets/project-sybil.png" alt="Graph-Based Sybil Wallet Detection & Airdrop Fraud Clustering">
+      <p class="project-name">Graph-Based Sybil Wallet Detection & Airdrop Fraud Clustering</p>
+      <p class="project-desc">Identified coordinated Sybil wallet clusters at 94% average purity, reproducing on-chain graph-based detection methodology without relying on labeled data.</p>
     </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">From Manual Review to Real-Time Defense: An Automated Dual-Defense Engine for Withdrawal Risk Control</p>
-      </div>
-      <p class="project-desc">Owned the end-to-end delivery of a real-time risk control engine — from architecture design and cross-functional alignment with engineering and business stakeholders to production rollout. A game-level statistical guard and user-level logic verification operate in layers, automating a tiered (high/medium/low severity) risk response workflow and reducing manual decision latency from 1–2 hours to under 15 minutes.</p>
-      <div class="project-chips">
-        <span class="chip">Real-Time Monitoring</span>
-        <span class="chip">Withdrawal Risk</span>
-        <span class="chip">Risk Control</span>
-      </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-behavioral-profiling.png" alt="Behavioral Profiling with Unsupervised Learning">
+      <p class="project-name">Behavioral Profiling with Unsupervised Learning: A Multi-dimensional Feature Framework</p>
+      <p class="project-desc">Built a multi-dimensional behavioral framework that surfaced the top 1% highest-risk cases at 78% precision, catching an exploit that evaded rule-based detection for 3+ years.</p>
     </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">Fewer False Alarms, Better UX: How Multi-condition Risk Scoring Replaced Single-Threshold Alerts</p>
-      </div>
-      <p class="project-desc">Redesigned a single-threshold alert system into a multi-dimensional risk scorecard — integrating ML predictions, game performance metrics, and user profile signals into tiered thresholds — to resolve excessive low-risk suspensions that were hurting user experience and revenue. Validated via historical simulation before live rollout: review time cut 50%, false-positive suspensions reduced 80% (exceeding the original ≥50% target), and alert tickets down 72%.</p>
-      <div class="project-chips">
-        <span class="chip">False-Positive Reduction</span>
-        <span class="chip">Simulation Validation</span>
-        <span class="chip">Feature Engineering</span>
-      </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-realtime-engine.png" alt="Real-Time Anomaly Detection Engine">
+      <p class="project-name">Real-Time Anomaly Detection Engine for Automated Risk Decisioning</p>
+      <p class="project-desc">Owned end-to-end delivery of a real-time risk engine, reducing manual decision latency from 1–2 hours to under 15 minutes.</p>
     </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <p class="project-title">Business Analytics Case Collection</p>
-      </div>
-      <p class="project-desc">Four cross-functional analytics cases — each moving from raw behavioral data to an adopted business decision. Diagnosed a homepage navigation failure by mapping a full browsing funnel, surfacing three critical drop points (A→B, B→C, C→D) that drove a product architecture redesign; segmented users by brand concentration to reveal that 70%+ engaged with only 1–2 brands, directly shaping partnership prioritization; identified two distinct churn profiles across two markets, delivering targeted re-engagement strategies per segment; and evaluated a seasonal campaign achieving ROI of 4.54, with Day 5–6 re-engagement timing recommendations adopted into marketing strategy.</p>
-      <div class="project-chips">
-        <span class="chip">Funnel Analysis</span>
-        <span class="chip">Segmentation</span>
-        <span class="chip">Churn Analysis</span>
-        <span class="chip">ROI Analysis</span>
-      </div>
-      <div class="project-footer">
-        <button class="expand-toggle" onclick="toggleExpand(this)">View cases ↓</button>
-      </div>
-      <div class="expand-content">
-        <div class="case-block">
-          <p class="case-block-label">Funnel Analysis</p>
-          <p>Diagnosed a post-launch navigation failure in the product homepage by building a full browsing funnel tracking scroll and click rates at each section — surfacing three critical drop points (A→B, B→C, C→D) and identifying that users who stopped scrolling were being redirected to promotions instead of products. Findings were adopted by the product team, who restructured the homepage architecture to surface promotions earlier and embed products directly in categories.</p>
-        </div>
-        <div class="case-block">
-          <p class="case-block-label">Segmentation</p>
-          <p>Segmented the user base by product brand concentration (single/dual/multiple) to quantify loyalty patterns and uncover substitution behavior — finding that over 70% of users engaged with only 1–2 brands, and that among users avoiding mainstream brands, over 80% concentrated on a single alternative. Findings directly informed brand partnership prioritization and personalized recommendation strategy, with targeted promotions by brand preference profile recommended.</p>
-        </div>
-        <div class="case-block">
-          <p class="case-block-label">Churn Analysis</p>
-          <p>Investigated a significant active user decline across Market A and Market B by cross-analyzing login timing, credit balance structure, and agent activity status — identifying two distinct churn profiles ("has balance, not engaging" and "wants to engage, no balance") and surfacing suspicious agent inactivity in specific audit groups during a concentrated time window. Delivered differentiated re-engagement strategies per churn profile, with the anomalous agent groups flagged for further investigation.</p>
-        </div>
-        <div class="case-block">
-          <p class="case-block-label">ROI Analysis</p>
-          <p>Evaluated a seasonal campaign's business impact by segmenting conversion rates across user types (new/repeat/return) and brands — calculating an overall ROI of 4.54 and finding that 20% of users returned post-event, with an average return timing around Day 5–6 and average participation spanning 3+ days. Recommended Day 5–6 re-engagement notifications and extra rewards for users participating 4+ days; recommendations were adopted into the subsequent marketing strategy.</p>
-        </div>
-      </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-scoring-redesign.png" alt="Feature-Based Risk Scoring Model">
+      <p class="project-name">Feature-Based Risk Scoring Model: Reducing False Positives via Multi-condition Classification</p>
+      <p class="project-desc">Redesigned a single-threshold alert system into a multi-condition risk scorecard, cutting false-positive suspensions 80% and review time 50%.</p>
     </div>
-
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-funnel-analysis.png" alt="Lobby Page Funnel Drop-off Analysis">
+      <p class="project-name">Lobby Page Funnel Drop-off Analysis: Diagnosing Navigation Failure</p>
+      <p class="project-desc">Diagnosed three critical drop-off points in the homepage browsing funnel; findings led the product team to restructure the page architecture.</p>
+    </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-brand-segmentation.png" alt="Brand Preference Segmentation">
+      <p class="project-name">Brand Preference Segmentation: A Foundation for Personalized Recommendation</p>
+      <p class="project-desc">Found that over 70% of users concentrated on just 1–2 brands; findings directly shaped brand partnership priorities and personalized promotion strategy.</p>
+    </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-churn-prediction.png" alt="Cross-Market Churn Prediction">
+      <p class="project-name">Cross-Market Churn Prediction: Behavioral Profiling for Targeted Re-engagement</p>
+      <p class="project-desc">Identified two distinct churn profiles across two markets by cross-analyzing login timing, balance structure, and agent activity, informing differentiated re-engagement strategies.</p>
+    </div>
+ 
+    <div class="project-card-simple">
+      <img src="assets/project-campaign-roi.png" alt="Seasonal Campaign ROI Modeling">
+      <p class="project-name">Seasonal Campaign ROI Modeling & Re-engagement Timing Analysis</p>
+      <p class="project-desc">Evaluated a seasonal campaign at 4.54x ROI; Day 5–6 re-engagement timing recommendations were adopted into subsequent marketing strategy.</p>
+    </div>
+ 
   </div>
 </div>
-
+ 
+<!-- DATA VISUALIZATION -->
+<div class="section-wrap fade-in" id="dataviz">
+  <p class="section-label">Data Visualization</p>
+  <h2 class="section-title">Dashboards & reporting</h2>
+  <p class="viz-note">Note: all charts use de-identified data to demonstrate analytical logic and dashboard design while preserving business confidentiality.</p>
+ 
+  <div class="viz-block">
+    <p class="viz-tool-label">Tableau</p>
+    <img src="assets/viz-tableau2.png" alt="Tableau weekly performance dashboard">
+  </div>
+ 
+  <div class="viz-block">
+    <p class="viz-tool-label">Tableau</p>
+    <img src="assets/viz-tableau1.png" alt="Tableau player performance dashboard">
+  </div>
+ 
+  <div class="viz-block">
+    <p class="viz-tool-label">QlikView</p>
+    <img src="assets/viz-qlikview.png" alt="QlikView net income dashboard">
+  </div>
+ 
+  <div class="viz-block">
+    <p class="viz-tool-label">Power BI</p>
+    <img src="assets/viz-powerbi.png" alt="Power BI data professional survey dashboard">
+  </div>
+ 
+</div>
+ 
 <!-- CONTACT -->
 <div class="section-wrap fade-in" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Let's connect</h2>
-  <p class="section-desc">Open to conversations about data, analytics, and building better products.</p>
-
+  <p class="section-desc">Open to conversations about data, modeling, and building better products.</p>
+ 
   <div class="contact-grid">
     <a class="contact-item" href="mailto:blairrr.wang@gmail.com">
       <div class="contact-icon">
@@ -778,24 +708,24 @@
     </a>
   </div>
 </div>
-
+ 
 <footer>
   Built with HTML &amp; GitHub Pages · Blair Wang © 2026
 </footer>
-
+ 
 <script>
   // Dark mode toggle
   const toggle = document.getElementById('themeToggle');
   const html = document.documentElement;
   const saved = localStorage.getItem('theme');
   if (saved) html.setAttribute('data-theme', saved);
-
+ 
   toggle.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
-
+ 
   // Typewriter for hero name
   const target = document.getElementById('typed-name');
   const text = 'Blair';
@@ -808,7 +738,7 @@
     }
   }
   setTimeout(type, 800);
-
+ 
   // Scroll fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -818,18 +748,10 @@
       }
     });
   }, { threshold: 0.1 });
-
+ 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
-
-<script>
-  function toggleExpand(btn) {
-    const card = btn.closest('.project-card');
-    const content = card.querySelector('.expand-content');
-    const isOpen = content.classList.contains('open');
-    content.classList.toggle('open');
-    btn.textContent = isOpen ? 'View cases ↓' : 'Hide cases ↑';
-  }
-</script>
+ 
 </body>
 </html>
+ 
